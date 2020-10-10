@@ -1,10 +1,12 @@
 package com.skilldistillery.filmquery.app;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
 
@@ -40,7 +42,7 @@ public class FilmQueryApp {
 		while (!quit) {
 
 			System.out.println("1.) Look up a film by its id.");
-			System.out.println("2.) Look up a film by a search keyword.");
+			System.out.println("2.) Look up a film by a keyword.");
 			System.out.println("3.) Exit the application.");
 			System.out.println();
 			System.out.println("Please choose an option");
@@ -57,8 +59,7 @@ public class FilmQueryApp {
 				} else {
 					System.out.println(db.findFilmById(filmIdChoice));
 					System.out.println();
-					System.out.println("Actors: ");
-					System.out.println(db.findActorsByFilmId(filmIdChoice));
+
 				}
 				System.out.println();
 				break;
@@ -66,13 +67,15 @@ public class FilmQueryApp {
 			case "2":
 				System.out.println();
 				System.out.print("Search for: ");
+				System.out.println();
 				String filmSearch = kb.next();
 				if (db.findFilmsByInput(filmSearch).size() == 0) {
 					System.out.println("No films found.");
 				} else {
-
-					System.out.println(db.findFilmsByInput(filmSearch));
-					
+					List<Film> films = db.findFilmsByInput(filmSearch);
+					for (Film film : films) {
+						System.out.println(film);
+					}
 				}
 				break;
 

@@ -18,6 +18,7 @@ public class Film {
 	private String name;
 	private List<Actor> actors;
 
+
 	public Film(int id, String title, String release_year, String rating, String description, String name) {
 		this.id = id;
 		this.title = title;
@@ -44,23 +45,23 @@ public class Film {
 		this.name = name;
 	}
 
-	public Film(int id, String title, String description, String release_year, String language_id,
-			int rental_duration, String rental_rate, String length, double replacement_cost, String rating,
-			String special_features, List<Actor> actors) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.release_year = release_year;
-		this.language_id = language_id;
-		this.rental_duration = rental_duration;
-		this.rental_rate = rental_rate;
-		this.length = length;
-		this.replacement_cost = replacement_cost;
-		this.rating = rating;
-		this.special_features = special_features;
-		this.actors = actors;
-	}
+//	public Film(int id, String title, String description, String release_year, String language_id,
+//			int rental_duration, String rental_rate, String length, double replacement_cost, String rating,
+//			String special_features, List<Actor> actors) {
+//		super();
+//		this.id = id;
+//		this.title = title;
+//		this.description = description;
+//		this.release_year = release_year;
+//		this.language_id = language_id;
+//		this.rental_duration = rental_duration;
+//		this.rental_rate = rental_rate;
+//		this.length = length;
+//		this.replacement_cost = replacement_cost;
+//		this.rating = rating;
+//		this.special_features = special_features;
+//		this.actors = actors;
+//	}
 
 	public Film(String title, String release_year, String rating, String description) {
 		this.title = title;
@@ -295,9 +296,16 @@ public class Film {
 //		builder.append(replacement_cost);
 //		builder.append(", special_features=");
 //		builder.append(special_features);
-//		builder.append(", actors=");
-//		builder.append(actors);
-//		builder.append("]");
+		builder.append("actors: \n");
+		for (Actor actor : actors) {
+			
+			builder.append(actor + "\n");
+			
+		}
+//		for (Film film : filmlist) {
+//			builder.append(film + "\n");
+//			System.out.println();
+//		}
 		return builder.toString();
 	}
 

@@ -1,11 +1,10 @@
 package com.skilldistillery.filmquery.entities;
 
-import java.util.List;
-
 public class Actor {
 	private int id;
 	private String first_name;
 	private String last_name;
+
 
 	public Actor(int id, String firstName, String lastName) {
 		super();
@@ -17,16 +16,10 @@ public class Actor {
 
 	public Actor() {
 	}
-//		@Override
-//		public String toString() {
-//			return "Actor [id=" + id + ", first Name=" + first_name + ", lastName=" + last_name + ", films=" + films + "]";
-//		}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((films == null) ? 0 : films.hashCode());
 		result = prime * result + ((first_name == null) ? 0 : first_name.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((last_name == null) ? 0 : last_name.hashCode());
@@ -36,6 +29,8 @@ public class Actor {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+
+
 //		builder.append("Actor id: ");
 //		builder.append(id);
 //		builder.append("Actors: \n");
@@ -58,11 +53,6 @@ public class Actor {
 		if (getClass() != obj.getClass())
 			return false;
 		Actor other = (Actor) obj;
-		if (films == null) {
-			if (other.films != null)
-				return false;
-		} else if (!films.equals(other.films))
-			return false;
 		if (first_name == null) {
 			if (other.first_name != null)
 				return false;
@@ -102,5 +92,4 @@ public class Actor {
 		this.last_name = last_name;
 	}
 
-	private List<Film> films;
 }

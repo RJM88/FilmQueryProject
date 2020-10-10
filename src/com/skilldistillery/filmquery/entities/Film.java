@@ -10,20 +10,42 @@ public class Film {
 	private String release_year;
 	private String language_id;
 	private int rental_duration;
-	private double rental_rate;
-	private Integer length;
+	private String rental_rate;
+	private String length;
 	private double replacement_cost;
 	private String rating;
 	private String special_features;
+	private String name;
 	private List<Actor> actors;
 
-	public int getId() {
-		return id;
+	public Film(int id, String title, String release_year, String rating, String description, String name) {
+		this.id = id;
+		this.title = title;
+		this.release_year = release_year;
+		this.rating = rating;
+		this.description = description;
+		this.name = name;
 	}
 
-	
+	public Film(String title, String release_year, String rating, String description, String name, List<Actor> actors) {
+		this.title = title;
+		this.release_year = release_year;
+		this.rating = rating;
+		this.description = description;
+		this.name = name;
+		this.actors = actors;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Film(int id, String title, String description, String release_year, String language_id,
-			int rental_duration, double rental_rate, Integer length, double replacement_cost, String rating,
+			int rental_duration, String rental_rate, String length, double replacement_cost, String rating,
 			String special_features, List<Actor> actors) {
 		super();
 		this.id = id;
@@ -39,11 +61,25 @@ public class Film {
 		this.special_features = special_features;
 		this.actors = actors;
 	}
-	public Film() {
-		// TODO Auto-generated constructor stub
+
+	public Film(String title, String release_year, String rating, String description) {
+		this.title = title;
+		this.release_year = release_year;
+		this.rating = rating;
+		this.description = description;
+		
+
 	}
 
+	public Film(int id, String title, String release_year, String rating, String description, String name, List<Actor> actors) {
+	}
 
+	public Film() {
+	}
+
+	public int getId() {
+		return id;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -89,19 +125,19 @@ public class Film {
 		this.rental_duration = rental_duration;
 	}
 
-	public double getRental_rate() {
+	public String getRental_rate() {
 		return rental_rate;
 	}
 
-	public void setRental_rate(double rental_rate) {
-		this.rental_rate = rental_rate;
+	public void setRental_rate(String string) {
+		this.rental_rate = string;
 	}
 
-	public Integer getLength() {
+	public String getLength() {
 		return length;
 	}
 
-	public void setLength(Integer length) {
+	public void setLength(String length) {
 		this.length = length;
 	}
 
@@ -146,12 +182,12 @@ public class Film {
 		result = prime * result + id;
 		result = prime * result + ((language_id == null) ? 0 : language_id.hashCode());
 		result = prime * result + ((length == null) ? 0 : length.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + ((release_year == null) ? 0 : release_year.hashCode());
 		result = prime * result + rental_duration;
+		result = prime * result + ((rental_rate == null) ? 0 : rental_rate.hashCode());
 		long temp;
-		temp = Double.doubleToLongBits(rental_rate);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(replacement_cost);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((special_features == null) ? 0 : special_features.hashCode());
@@ -190,6 +226,11 @@ public class Film {
 				return false;
 		} else if (!length.equals(other.length))
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (rating == null) {
 			if (other.rating != null)
 				return false;
@@ -202,7 +243,10 @@ public class Film {
 			return false;
 		if (rental_duration != other.rental_duration)
 			return false;
-		if (Double.doubleToLongBits(rental_rate) != Double.doubleToLongBits(other.rental_rate))
+		if (rental_rate == null) {
+			if (other.rental_rate != null)
+				return false;
+		} else if (!rental_rate.equals(other.rental_rate))
 			return false;
 		if (Double.doubleToLongBits(replacement_cost) != Double.doubleToLongBits(other.replacement_cost))
 			return false;
@@ -221,11 +265,40 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", release_year=" + release_year
-				+ ", language_id=" + language_id + ", rental_duration=" + rental_duration + ", rental_rate="
-				+ rental_rate + ", length=" + length + ", replacement_cost=" + replacement_cost + ", rating=" + rating
-				+ ", special_features=" + special_features + ", actors=" + actors + "]";
+		StringBuilder builder = new StringBuilder();
+//		builder.append("Film [id=");
+//		builder.append(id);
+		builder.append("Title: ");
+		builder.append(title);
+		builder.append("\n");
+		builder.append("Release_year: ");
+		builder.append(release_year);
+		builder.append("\n");
+		builder.append("Rating: ");
+		builder.append(rating);
+		builder.append("\n");
+		builder.append("Description: ");
+		builder.append(description);
+		builder.append("\n");
+		builder.append("Language: ");
+		builder.append(name);
+		builder.append("\n");
+//		builder.append(", language_id=");
+//		builder.append(language_id);
+//		builder.append(", rental_duration=");
+//		builder.append(rental_duration);
+//		builder.append(", rental_rate=");
+//		builder.append(rental_rate);
+//		builder.append(", length=");
+//		builder.append(length);
+//		builder.append(", replacement_cost=");
+//		builder.append(replacement_cost);
+//		builder.append(", special_features=");
+//		builder.append(special_features);
+//		builder.append(", actors=");
+//		builder.append(actors);
+//		builder.append("]");
+		return builder.toString();
 	}
+
 }
-//Create Geetters and setters
-//Use Actor classes

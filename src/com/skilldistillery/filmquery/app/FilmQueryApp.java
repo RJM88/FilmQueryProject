@@ -5,33 +5,88 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
-import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
-  
-  DatabaseAccessor db = new DatabaseAccessorObject();
 
-  public static void main(String[] args) throws SQLException {
-    FilmQueryApp app = new FilmQueryApp();
-    app.test();
-//    app.launch();
-  }
+	DatabaseAccessor db = new DatabaseAccessorObject();
 
-  private void test() throws SQLException {
-    Film film = db.findFilmById(1);
-    System.out.println(film);
-  }
+	public static void main(String[] args) throws SQLException {
+		FilmQueryApp app = new FilmQueryApp();
+//		app.test();
+		app.launch();
+	}
 
-  private void launch() {
-    Scanner input = new Scanner(System.in);
-    
-    startUserInterface(input);
-    
-    input.close();
-  }
+	public FilmQueryApp() {
+		super();
+	}
 
-  private void startUserInterface(Scanner input) {
-    
-  }
+//	private void test() throws SQLException {
+//		List<Actor> crew = db.findActorsByFilmId(1);
+//		for (Actor actor : crew) {
+//
+//			System.out.println(actor);
+//		}
+//	}
+
+	private void launch() throws SQLException {
+		Scanner input = new Scanner(System.in);
+		startUserInterface(input);
+		input.close();
+	}
+
+	private void startUserInterface(Scanner input) throws SQLException {
+		Scanner kb = new Scanner(System.in);
+		boolean quit = false;
+		while (!quit) {
+
+			System.out.println("1.) Look up a film by its id.");
+			System.out.println("2.) Look up a film by a search keyword.");
+			System.out.println("3.) Exit the application.");
+			System.out.println();
+			System.out.println("Please choose an option");
+			String userChoice = kb.next();
+
+			switch (userChoice) {
+
+			case "1":
+				System.out.print("Please choose a Film ID: ");
+				int filmIdChoice = kb.nextInt();
+				System.out.println();
+				if (db.findFilmById(filmIdChoice) == null) {
+					System.out.println("Film cannot be found.");
+				} else {
+					System.out.println(db.findFilmById(filmIdChoice));
+					System.out.println();
+					System.out.println("Actors: ");
+					System.out.println(db.findActorsByFilmId(filmIdChoice));
+				}
+				System.out.println();
+				break;
+
+			case "2":
+				System.out.println();
+				System.out.print("Search for: ");
+				String filmSearch = kb.next();
+				if (db.findFilmsByInput(filmSearch).size() == 0) {
+					System.out.println("No films found.");
+				} else {
+
+					System.out.println(db.findFilmsByInput(filmSearch));
+					
+				}
+				break;
+
+			case "3":
+				System.out.println("Thank you, and goodbye.");
+				quit = true;
+				break;
+
+			default:
+				System.out.println("Not an option, please select again.\n");
+			}
+		}
+		kb.close();
+
+	}
 
 }

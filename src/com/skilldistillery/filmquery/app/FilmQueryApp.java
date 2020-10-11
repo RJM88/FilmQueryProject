@@ -56,15 +56,15 @@ public class FilmQueryApp {
 					System.out.print("Please choose a Film ID number: ");
 					int filmIdChoice;
 					filmIdChoice = kb.nextInt();
-					System.out.println();
 					if (db.findFilmById(filmIdChoice) == null) {
-						System.out.println("Film cannot be found.");
+						System.out.println("\nFilm cannot be found.\n");
 					} else {
-						System.out.println(db.findFilmById(filmIdChoice));
+						System.out.println("\n" + db.findFilmById(filmIdChoice));
 					}
 					break;
 				} catch (Exception e) {
-					System.out.println("the film id must be a number.");
+					System.out.println("\nthe film id must be a number.\n");
+					kb.nextLine();
 					break;
 				}
 
@@ -73,8 +73,7 @@ public class FilmQueryApp {
 				System.out.print("Search for: ");
 				String filmSearch = kb.next();
 				if (db.findFilmsByInput(filmSearch).size() == 0) {
-					System.out.println("No films found.");
-					System.out.println();
+					System.out.println("\nNo films found.\n");
 				} else {
 					System.out.println();
 					List<Film> films = db.findFilmsByInput(filmSearch);
@@ -90,6 +89,7 @@ public class FilmQueryApp {
 				break;
 
 			default:
+				System.out.println();
 				System.out.println("Not an option, please select again.\n");
 			}
 

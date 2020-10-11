@@ -44,7 +44,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setId(rs.getInt("id"));
 				film.setTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
-				film.setRelease_year(rs.getString("release_year"));
+				film.setRelease_year(rs.getInt("release_year"));
 				film.setLanguage_id(rs.getString("language_id"));
 				film.setRating(rs.getString("rating"));
 				film.setName(rs.getString("name"));
@@ -104,7 +104,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			// 1. set connection
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			// 2. SLQ query
-			String sql = "SELECT * FROM actor JOIN film_actor ON actor.id = film_actor.actor_id JOIN "
+			String sql = "SELECT *  FROM actor JOIN film_actor ON actor.id = film_actor.actor_id JOIN "
 					+ "film on film.id = film_actor.film_id WHERE film_actor.film_id = ?";
 			// 3. prepare statement.
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -152,7 +152,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String title = rs.getString("title");
-				String release_year = rs.getString("release_year");
+				int release_year = rs.getInt("release_year");
 				String rating = rs.getString("rating");
 				String description = rs.getString("description");
 				String name = rs.getString("name");

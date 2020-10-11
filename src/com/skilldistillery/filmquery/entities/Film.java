@@ -7,7 +7,7 @@ public class Film {
 	private int id;
 	private String title;
 	private String description;
-	private String release_year;
+	private int release_year;
 	private String language_id;
 	private int rental_duration;
 	private String rental_rate;
@@ -18,7 +18,7 @@ public class Film {
 	private String name;
 	private List<Actor> actors;
 
-	public Film(int id, String title, String release_year, String rating, String description, String name) {
+	public Film(int id, String title, int release_year, String rating, String description, String name) {
 		this.id = id;
 		this.title = title;
 		this.release_year = release_year;
@@ -27,7 +27,7 @@ public class Film {
 		this.name = name;
 	}
 
-	public Film(String title, String release_year, String rating, String description, String name, List<Actor> actors) {
+	public Film(String title, int release_year, String rating, String description, String name, List<Actor> actors) {
 		this.title = title;
 		this.release_year = release_year;
 		this.rating = rating;
@@ -75,12 +75,12 @@ public class Film {
 		this.description = description;
 	}
 
-	public String getRelease_year() {
+	public int getRelease_year() {
 		return release_year;
 	}
 
-	public void setRelease_year(String string) {
-		this.release_year = string;
+	public void setRelease_year(int release_year) {
+		this.release_year = release_year;
 	}
 
 	public String getLanguage_id() {
@@ -158,7 +158,7 @@ public class Film {
 		result = prime * result + ((length == null) ? 0 : length.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
-		result = prime * result + ((release_year == null) ? 0 : release_year.hashCode());
+		result = prime * result + release_year;
 		result = prime * result + rental_duration;
 		result = prime * result + ((rental_rate == null) ? 0 : rental_rate.hashCode());
 		long temp;
@@ -210,10 +210,7 @@ public class Film {
 				return false;
 		} else if (!rating.equals(other.rating))
 			return false;
-		if (release_year == null) {
-			if (other.release_year != null)
-				return false;
-		} else if (!release_year.equals(other.release_year))
+		if (release_year != other.release_year)
 			return false;
 		if (rental_duration != other.rental_duration)
 			return false;
@@ -265,5 +262,7 @@ public class Film {
 		}
 		return builder.toString();
 	}
+
+
 
 }

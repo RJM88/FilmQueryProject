@@ -241,7 +241,7 @@ public class Film {
 		builder.append("Title: ");
 		builder.append(title);
 		builder.append("\n");
-		builder.append("Release_year: ");
+		builder.append("Release year: ");
 		builder.append(release_year);
 		builder.append("\n");
 		builder.append("Rating: ");

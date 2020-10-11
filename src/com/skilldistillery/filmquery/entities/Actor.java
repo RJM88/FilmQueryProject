@@ -31,16 +31,10 @@ public class Actor {
 		StringBuilder builder = new StringBuilder();
 
 
-//		builder.append("Actor id: ");
-//		builder.append(id);
-//		builder.append("Actors: \n");
 		builder.append(first_name);
 		builder.append(" ");
-//		builder.append(", Last name: ");
 		builder.append(last_name);
-//		builder.append(", films=");
-//		builder.append(films);
-//		builder.append("]");
+
 		return builder.toString();
 	}
 
